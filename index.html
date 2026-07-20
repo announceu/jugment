@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jugment Day Group</title>
+    <meta
+      name="description"
+      content="Jugment Day Group is a bilingual dark portfolio for an anonymous engineering legion building systems, tools, and automation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-lang="ru">
+    <header class="site-header">
+      <div class="container nav-row">
+        <a class="header-brand" href="#top" aria-label="Jugment Day Group homepage">
+          <span class="brand-copy">
+            <strong>Jugment Day Group</strong>
+            <span
+              data-i18n="brand_tagline"
+              data-ru="легион анонимных программистов"
+              data-en="legion of anonymous programmers"
+              >легион анонимных программистов</span
+            >
+          </span>
+        </a>
+
+        <div class="nav-panel">
+          <nav class="nav">
+            <a href="#about" data-i18n="nav_about" data-ru="О нас" data-en="About">О нас</a>
+            <a href="#team" data-i18n="nav_team" data-ru="Команда" data-en="Team">Команда</a>
+            <a
+              href="#projects"
+              data-i18n="nav_projects"
+              data-ru="Разработки"
+              data-en="Projects"
+              >Разработки</a
+            >
+            <a
+              href="#contact"
+              data-i18n="nav_contact"
+              data-ru="Контакты"
+              data-en="Contact"
+              >Контакты</a
+            >
+          </nav>
+
+          <div class="lang-toggle" role="group" aria-label="Language switch">
+            <button class="lang-button is-active" type="button" data-lang-switch="ru">RU</button>
+            <button class="lang-button" type="button" data-lang-switch="en">EN</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container" id="top">
+        <div class="hero-backdrop" aria-hidden="true">
+          <canvas class="backdrop-canvas"></canvas>
+          <div class="backdrop-vignette"></div>
+        </div>
+        <div class="hero-shell reveal">
+          <div class="hero-copy">
+            <p class="hero-kicker" data-i18n="hero_kicker" data-ru="закрытые системы · автоматизация · внутренние инструменты" data-en="closed systems · automation · internal tools">
+              закрытые системы · автоматизация · внутренние инструменты
+            </p>
+            <h1>Jugment Day Group</h1>
+            <p
+              class="hero-summary"
+              data-i18n="hero_summary"
+              data-ru="Тихо проектируем, быстро собираем и поддерживаем софт, который выдерживает реальную нагрузку."
+              data-en="We quietly design, ship, and maintain software built to survive real operational load."
+            >
+              Тихо проектируем, быстро собираем и поддерживаем софт, который выдерживает реальную нагрузку.
+            </p>
+          </div>
+
+          <div class="hero-media" data-hero-tilt aria-label="Hero image">
+            <img class="hero-media__image" src="./assets/hero-image.jpg" alt="Jugment Day Group" data-image-fallback />
+            <div class="hero-media__fallback" aria-hidden="true">
+              <span>YOUR IMAGE</span>
+              <small>assets/hero-image.jpg</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="marquee" aria-label="Stack list">
+        <div class="marquee-track">
+          <span>Automation</span>
+          <span>TypeScript</span>
+          <span>Python</span>
+          <span>React</span>
+          <span>Internal Systems</span>
+          <span>Browser Extensions</span>
+          <span>Operations</span>
+          <span>Linux</span>
+          <span>Private Infrastructure</span>
+          <span>Anonymous Shipping</span>
+          <span>Automation</span>
+          <span>TypeScript</span>
+          <span>Python</span>
+          <span>React</span>
+          <span>Internal Systems</span>
+          <span>Browser Extensions</span>
+          <span>Operations</span>
+          <span>Linux</span>
+          <span>Private Infrastructure</span>
+          <span>Anonymous Shipping</span>
+        </div>
+      </section>
+
+      <section class="section section-about container" id="about">
+        <div class="section-watermark" aria-hidden="true">01</div>
+
+        <div class="section-top reveal">
+          <div class="section-heading">
+            <p class="section-label" data-i18n="section_about_label" data-ru="01 / о нас" data-en="01 / about">01 / о нас</p>
+            <h2
+              data-i18n="about_title"
+              data-ru="Создаём вещи, которые действительно нужны."
+              data-en="Building things that actually matter."
+            >
+              Создаём вещи, которые действительно нужны.
+            </h2>
+          </div>
+
+          <div class="section-copy">
+            <p
+              data-i18n="about_p1"
+              data-ru="Jugment Day Group проектирует внутренние платформы, автоматизацию, панели управления и инфраструктурные слои для команд, которым нужен не шум, а контроль."
+              data-en="Jugment Day Group designs internal platforms, automation layers, control surfaces, and infrastructure tooling for teams that need control instead of noise."
+            >
+              Jugment Day Group проектирует внутренние платформы, автоматизацию, панели управления и инфраструктурные слои для команд, которым нужен не шум, а контроль.
+            </p>
+            <p
+              data-i18n="about_p2"
+              data-ru="Снаружи всё выглядит сдержанно. Внутри лежит инженерная дисциплина: надёжность, скорость, понятные интерфейсы и архитектура, которую можно поддерживать."
+              data-en="The outside stays restrained. Under the surface sits engineering discipline: reliability, speed, clear interfaces, and architecture that stays maintainable."
+            >
+              Снаружи всё выглядит сдержанно. Внутри лежит инженерная дисциплина: надёжность, скорость, понятные интерфейсы и архитектура, которую можно поддерживать.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <div class="about-card-grid">
+          <article class="about-card reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 7.5L12 4l4 3.5M8 16.5l4 3.5 4-3.5" />
+                <path d="M5 12h14" />
+              </svg>
+            </div>
+            <h3 data-i18n="card_langs" data-ru="Языки" data-en="Languages">Языки</h3>
+            <div class="tag-list">
+              <span>JavaScript</span>
+              <span>TypeScript</span>
+              <span>Python</span>
+              <span>Go</span>
+            </div>
+          </article>
+
+          <article class="about-card reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="5" width="16" height="14" rx="3" />
+                <path d="M8 9h8M8 13h5" />
+              </svg>
+            </div>
+            <h3 data-i18n="card_frontend" data-ru="Фронтенд" data-en="Frontend">Фронтенд</h3>
+            <div class="tag-list">
+              <span>React</span>
+              <span>Next.js</span>
+              <span>UI Systems</span>
+              <span>HTML5</span>
+            </div>
+          </article>
+
+          <article class="about-card reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 8.5h10M7 12h10M7 15.5h6" />
+                <rect x="4" y="4.5" width="16" height="15" rx="3" />
+              </svg>
+            </div>
+            <h3 data-i18n="card_backend" data-ru="Бэкенд" data-en="Backend">Бэкенд</h3>
+            <div class="tag-list">
+              <span>Node.js</span>
+              <span>REST APIs</span>
+              <span>WebSockets</span>
+              <span>Queues</span>
+            </div>
+          </article>
+
+          <article class="about-card reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <ellipse cx="12" cy="7" rx="6.5" ry="2.5" />
+                <path d="M5.5 7v5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5V7" />
+                <path d="M5.5 12v5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-5" />
+              </svg>
+            </div>
+            <h3 data-i18n="card_data" data-ru="Данные" data-en="Data">Данные</h3>
+            <div class="tag-list">
+              <span>Postgres</span>
+              <span>Redis</span>
+              <span>Event Logs</span>
+              <span>Storage</span>
+            </div>
+          </article>
+
+          <article class="about-card reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z" />
+                <path d="M9.5 12l1.8 1.8L15 10.2" />
+              </svg>
+            </div>
+            <h3 data-i18n="card_security" data-ru="Безопасность" data-en="Security">Безопасность</h3>
+            <div class="tag-list">
+              <span>Auth</span>
+              <span>Anti-abuse</span>
+              <span>Moderation</span>
+              <span>Review</span>
+            </div>
+          </article>
+
+          <article class="about-card reveal">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 6.5h8M8 12h8M8 17.5h5" />
+                <path d="M5 4.5h14v15H5z" />
+              </svg>
+            </div>
+            <h3
+              data-i18n="card_infra"
+              data-ru="Инфраструктура"
+              data-en="Infrastructure"
+            >
+              Инфраструктура
+            </h3>
+            <div class="tag-list">
+              <span>Linux</span>
+              <span>Deployments</span>
+              <span>VPS Ops</span>
+              <span>Monitoring</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-team container" id="team">
+        <div class="section-top reveal">
+          <div class="section-heading">
+            <p class="section-label">Команда</p>
+            <h2>Люди, которые собирают системы.</h2>
+          </div>
+          <div class="section-copy">
+            <p>Небольшая команда с полным контекстом: от архитектуры и интерфейса до запуска и поддержки.</p>
+          </div>
+        </div>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <div class="team-list">
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <img src="./assets/team/lev.jpg" alt="Lev" data-image-fallback />
+              <span class="team-photo__fallback" aria-hidden="true">LG</span>
+            </div>
+            <div class="team-card__main">
+              <p class="team-card__role">Founder &amp; Developer</p>
+              <h3>Lev</h3>
+              <p>Проектирование систем, автоматизация, интерфейсы и инфраструктурные контуры.</p>
+            </div>
+            <div class="team-card__stack">
+              <p>Стек</p>
+              <div class="tag-list">
+                <span>TypeScript</span>
+                <span>Node.js</span>
+                <span>React</span>
+                <span>Postgres</span>
+                <span>Docker</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <img src="./assets/team/annonceu.jpg" alt="annonceu" data-image-fallback />
+              <span class="team-photo__fallback" aria-hidden="true">AN</span>
+            </div>
+            <div class="team-card__main">
+              <p class="team-card__role">Right Hand</p>
+              <h3>annonceu</h3>
+              <p>Операционный контур, координация задач, поддержка процессов и быстрый разбор рабочих узких мест.</p>
+            </div>
+            <div class="team-card__stack">
+              <p>Стек</p>
+              <div class="tag-list">
+                <span>Operations</span>
+                <span>Support</span>
+                <span>Coordination</span>
+                <span>QA</span>
+                <span>Comms</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-projects container" id="projects">
+        <div class="section-watermark" aria-hidden="true">02</div>
+
+        <div class="section-top reveal">
+          <div class="section-heading">
+            <p class="section-label" data-i18n="section_projects_label" data-ru="02 / разработки" data-en="02 / projects">02 / разработки</p>
+            <h2
+              data-i18n="projects_title"
+              data-ru="Разработки с нервной системой."
+              data-en="Systems with real operational pulse."
+            >
+              Разработки с нервной системой.
+            </h2>
+          </div>
+
+          <div class="section-copy">
+            <p
+              data-i18n="projects_intro"
+              data-ru="Каждая система здесь задумана как рабочий инструмент: меньше красивых обещаний, больше скорости, контроля и видимости состояния."
+              data-en="Every system here is conceived as an operator tool: less decorative promise, more speed, control, and state visibility."
+            >
+              Каждая система здесь задумана как рабочий инструмент: меньше красивых обещаний, больше скорости, контроля и видимости состояния.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <div class="project-grid">
+          <a class="project-card reveal" href="#project-northstar" data-project="northstar">
+            <div class="project-card-top">
+              <p class="project-index">01</p>
+              <span class="project-arrow">&nearr;</span>
+            </div>
+            <h3>Northstar Desk</h3>
+            <p
+              class="project-copy"
+              data-i18n="project_1"
+              data-ru="Внутренняя панель управления для операторов, модерации и сервисных команд."
+              data-en="Internal control surface for operators, moderation flows, and service teams."
+            >
+              Внутренняя панель управления для операторов, модерации и сервисных команд.
+            </p>
+            <div class="project-card__facts"><span>Control surface</span><span>Internal</span></div>
+            <div class="tag-list">
+              <span>React</span>
+              <span>Node</span>
+              <span>RBAC</span>
+            </div>
+            <p class="project-link-label" data-i18n="project_open_case" data-ru="Открыть кейс" data-en="Open case">Открыть кейс</p>
+          </a>
+
+          <a class="project-card reveal" href="#project-sentinel" data-project="sentinel">
+            <div class="project-card-top">
+              <p class="project-index">02</p>
+              <span class="project-arrow">&nearr;</span>
+            </div>
+            <h3>Sentinel Relay</h3>
+            <p
+              class="project-copy"
+              data-i18n="project_2"
+              data-ru="Слой автоматизации и очередей для распределения задач, событий и реакций системы."
+              data-en="Automation and queue layer for task routing, event processing, and system reactions."
+            >
+              Слой автоматизации и очередей для распределения задач, событий и реакций системы.
+            </p>
+            <div class="project-card__facts"><span>Event routing</span><span>Queue layer</span></div>
+            <div class="tag-list">
+              <span>Workers</span>
+              <span>Redis</span>
+              <span>Events</span>
+            </div>
+            <p class="project-link-label" data-i18n="project_open_case" data-ru="Открыть кейс" data-en="Open case">Открыть кейс</p>
+          </a>
+
+          <a class="project-card reveal" href="#project-ghostline" data-project="ghostline">
+            <div class="project-card-top">
+              <p class="project-index">03</p>
+              <span class="project-arrow">&nearr;</span>
+            </div>
+            <h3>Ghostline Hosting</h3>
+            <p
+              class="project-copy"
+              data-i18n="project_3"
+              data-ru="Приватный слой деплоя и хостинга для закрытых сервисов, ботов и внутренних API."
+              data-en="Private deployment and hosting layer for closed services, bots, and internal APIs."
+            >
+              Приватный слой деплоя и хостинга для закрытых сервисов, ботов и внутренних API.
+            </p>
+            <div class="project-card__facts"><span>Private hosting</span><span>Managed</span></div>
+            <div class="tag-list">
+              <span>Linux</span>
+              <span>Docker</span>
+              <span>Monitoring</span>
+            </div>
+            <p class="project-link-label" data-i18n="project_open_case" data-ru="Открыть кейс" data-en="Open case">Открыть кейс</p>
+          </a>
+
+          <a class="project-card reveal" href="#project-relaykit" data-project="relaykit">
+            <div class="project-card-top">
+              <p class="project-index">04</p>
+              <span class="project-arrow">&nearr;</span>
+            </div>
+            <h3>Relay Kit</h3>
+            <p
+              class="project-copy"
+              data-i18n="project_4"
+              data-ru="Набор браузерных расширений и утилит для ускорения повторяющихся операторских действий."
+              data-en="A suite of browser extensions and utilities for accelerating repetitive operator actions."
+            >
+              Набор браузерных расширений и утилит для ускорения повторяющихся операторских действий.
+            </p>
+            <div class="project-card__facts"><span>Integrations</span><span>Operational</span></div>
+            <div class="tag-list">
+              <span>Extension</span>
+              <span>JS</span>
+              <span>UX</span>
+            </div>
+            <p class="project-link-label" data-i18n="project_open_case" data-ru="Открыть кейс" data-en="Open case">Открыть кейс</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section section-contact container" id="contact">
+        <div class="section-watermark" aria-hidden="true">03</div>
+
+        <div class="section-top reveal">
+          <div class="section-heading">
+            <p class="section-label" data-i18n="section_contact_label" data-ru="03 / контакт" data-en="03 / contact">03 / контакт</p>
+            <h2
+              data-i18n="contact_title"
+              data-ru="Тихие люди. Точная инженерия."
+              data-en="Quiet people. Precise engineering."
+            >
+              Тихие люди. Точная инженерия.
+            </h2>
+          </div>
+
+          <div class="section-copy">
+            <p
+              data-i18n="contact_copy"
+              data-ru="Если нужен инструмент, внутренняя система или закрытая платформа без визуального мусора и архитектурного бардака, можно начать разговор здесь."
+              data-en="If you need a tool, internal system, or closed platform without visual clutter or architectural chaos, start the conversation here."
+            >
+              Если нужен инструмент, внутренняя система или закрытая платформа без визуального мусора и архитектурного бардака, можно начать разговор здесь.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <div class="contact-grid">
+          <a class="contact-link reveal" href="https://t.me/lev_devs" target="_blank" rel="noreferrer">
+            <span class="contact-label" data-i18n="contact_email_label" data-ru="Telegram" data-en="Telegram">Telegram</span>
+            <strong>@lev_devs</strong>
+          </a>
+          <a class="contact-link reveal" href="#top">
+            <span class="contact-label" data-i18n="contact_label" data-ru="Формат работы" data-en="Mode of work">Формат работы</span>
+            <strong data-i18n="contact_mode" data-ru="Приватно / под задачу" data-en="Private / scope-based">Приватно / под задачу</strong>
+          </a>
+          <a class="contact-link reveal" href="#projects">
+            <span class="contact-label" data-i18n="contact_focus" data-ru="Фокус" data-en="Focus">Фокус</span>
+            <strong data-i18n="contact_focus_value" data-ru="Системы, ops, automation" data-en="Systems, ops, automation">Системы, ops, automation</strong>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="project-dialog" data-project-dialog aria-labelledby="project-dialog-title">
+      <div class="project-dialog__shell">
+        <button
+          class="project-dialog__close"
+          type="button"
+          data-project-close
+          aria-label="Close project details"
+        >
+          <span>&times;</span>
+        </button>
+
+        <p class="project-dialog__eyebrow" data-project-dialog-index>01</p>
+        <h3 class="project-dialog__title" id="project-dialog-title" data-project-dialog-title>
+          Northstar Desk
+        </h3>
+        <p class="project-dialog__summary" data-project-dialog-summary></p>
+
+        <div class="project-dialog__grid">
+          <div class="project-dialog__column">
+            <p
+              class="project-dialog__label"
+              data-i18n="dialog_role_label"
+              data-ru="Роль"
+              data-en="Role"
+            >
+              Роль
+            </p>
+            <p class="project-dialog__text" data-project-dialog-role></p>
+          </div>
+          <div class="project-dialog__column">
+            <p
+              class="project-dialog__label"
+              data-i18n="dialog_result_label"
+              data-ru="Результат"
+              data-en="Outcome"
+            >
+              Результат
+            </p>
+            <p class="project-dialog__text" data-project-dialog-outcome></p>
+          </div>
+        </div>
+
+        <div class="project-dialog__stack">
+          <p
+            class="project-dialog__label"
+            data-i18n="dialog_stack_label"
+            data-ru="Стек"
+            data-en="Stack"
+          >
+            Стек
+          </p>
+          <div class="tag-list" data-project-dialog-tags></div>
+        </div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer container">
+      <div class="footer-panel reveal">
+        <div class="footer-main">
+          <div>
+            <p class="footer-brand">Jugment Day Group</p>
+            <p
+              class="footer-note"
+              data-i18n="footer_note"
+              data-ru="Закрытые системы, автоматизация и частная инфраструктура."
+              data-en="Closed systems, automation, and private infrastructure."
+            >
+              Закрытые системы, автоматизация и частная инфраструктура.
+            </p>
+          </div>
+          <a class="footer-telegram" href="https://t.me/lev_devs" target="_blank" rel="noreferrer">
+            @lev_devs <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Jugment Day Group</p>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="#about" data-i18n="footer_nav_about" data-ru="О нас" data-en="About">О нас</a>
+            <a href="#team" data-i18n="nav_team" data-ru="Команда" data-en="Team">Команда</a>
+            <a href="#projects" data-i18n="footer_nav_projects" data-ru="Разработки" data-en="Projects">Разработки</a>
+            <a href="#top" data-i18n="footer_channels_top" data-ru="Наверх" data-en="Back to top">Наверх</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
