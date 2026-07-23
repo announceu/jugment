@@ -31,7 +31,22 @@
           </span>
         </a>
 
-        <div class="nav-panel">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-menu"
+          data-menu-toggle
+        >
+          <span class="menu-toggle__label" data-i18n="nav_menu" data-ru="Меню" data-en="Menu">Меню</span>
+          <span class="menu-toggle__icon" aria-hidden="true">
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+          </span>
+        </button>
+
+        <div class="nav-panel" id="site-menu" data-menu-panel>
           <nav class="nav">
             <a href="#about" data-i18n="nav_about" data-ru="О нас" data-en="About">О нас</a>
             <a href="#team" data-i18n="nav_team" data-ru="Команда" data-en="Team">Команда</a>
@@ -52,8 +67,36 @@
           </nav>
 
           <div class="lang-toggle" role="group" aria-label="Language switch">
-            <button class="lang-button is-active" type="button" data-lang-switch="ru">RU</button>
-            <button class="lang-button" type="button" data-lang-switch="en">EN</button>
+            <button class="lang-button is-active" type="button" data-lang-switch="ru" aria-pressed="true">
+              <span class="lang-button__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3.8v4.4" />
+                  <path d="M12 15.8v4.4" />
+                  <path d="M3.8 12h4.4" />
+                  <path d="M15.8 12h4.4" />
+                  <path d="M6.9 6.9l2.9 2.9" />
+                  <path d="M14.2 14.2l2.9 2.9" />
+                  <path d="M17.1 6.9l-2.9 2.9" />
+                  <path d="M9.8 14.2l-2.9 2.9" />
+                </svg>
+              </span>
+              <span class="lang-button__label">RU</span>
+            </button>
+            <button class="lang-button" type="button" data-lang-switch="en" aria-pressed="false">
+              <span class="lang-button__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3.8v4.4" />
+                  <path d="M12 15.8v4.4" />
+                  <path d="M3.8 12h4.4" />
+                  <path d="M15.8 12h4.4" />
+                  <path d="M6.9 6.9l2.9 2.9" />
+                  <path d="M14.2 14.2l2.9 2.9" />
+                  <path d="M17.1 6.9l-2.9 2.9" />
+                  <path d="M9.8 14.2l-2.9 2.9" />
+                </svg>
+              </span>
+              <span class="lang-button__label">EN</span>
+            </button>
           </div>
         </div>
       </div>
@@ -79,6 +122,17 @@
             >
               Тихо проектируем, быстро собираем и поддерживаем софт, который выдерживает реальную нагрузку.
             </p>
+            <div class="hero-association">
+              <p
+                class="hero-association__text"
+                data-binary-scramble
+                data-i18n="hero_association"
+                data-ru="Jugment Day Group также связана и с HAT — Hack Any Thing."
+                data-en="Jugment Day Group is also connected with HAT — Hack Any Thing."
+              >
+                Jugment Day Group также связана и с HAT — Hack Any Thing.
+              </p>
+            </div>
           </div>
 
           <div class="hero-media" data-hero-tilt aria-label="Hero image">
@@ -89,6 +143,7 @@
             </div>
           </div>
         </div>
+
       </section>
 
       <section class="marquee" aria-label="Stack list">
@@ -113,7 +168,6 @@
           <span>Linux</span>
           <span>Private Infrastructure</span>
           <span>Anonymous Shipping</span>
-          <span>TOR</span>
         </div>
       </section>
 
@@ -460,6 +514,10 @@
             <span class="contact-label" data-i18n="contact_email_label" data-ru="Telegram" data-en="Telegram">Telegram</span>
             <strong>@lev_devs</strong>
           </a>
+          <a class="contact-link reveal" href="https://t.me/announceu" target="_blank" rel="noreferrer">
+            <span class="contact-label" data-i18n="contact_secondary_label" data-ru="Telegram / team" data-en="Telegram / team">Telegram / team</span>
+            <strong>@announceu</strong>
+          </a>
           <a class="contact-link reveal" href="#top">
             <span class="contact-label" data-i18n="contact_label" data-ru="Формат работы" data-en="Mode of work">Формат работы</span>
             <strong data-i18n="contact_mode" data-ru="Приватно / под задачу" data-en="Private / scope-based">Приватно / под задачу</strong>
@@ -542,9 +600,14 @@
               Закрытые системы, автоматизация и частная инфраструктура.
             </p>
           </div>
-          <a class="footer-telegram" href="https://t.me/lev_devs" target="_blank" rel="noreferrer">
-            @lev_devs <span aria-hidden="true">↗</span>
-          </a>
+          <div class="footer-contacts">
+            <a class="footer-telegram" href="https://t.me/lev_devs" target="_blank" rel="noreferrer">
+              @lev_devs <span aria-hidden="true">↗</span>
+            </a>
+            <a class="footer-telegram" href="https://t.me/announceu" target="_blank" rel="noreferrer">
+              @announceu <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
 
         <div class="footer-bottom">
@@ -559,7 +622,6 @@
       </div>
     </footer>
 
-    <div class="cursor-glow" aria-hidden="true"></div>
     <script src="./script.js"></script>
   </body>
 </html>
