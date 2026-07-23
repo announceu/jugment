@@ -85,6 +85,7 @@ const body = document.body;
 const root = document.documentElement;
 const langButtons = [...document.querySelectorAll("[data-lang-switch]")];
 const i18nNodes = [...document.querySelectorAll("[data-i18n]")];
+const binaryScrambleNodes = [...document.querySelectorAll("[data-binary-scramble]")];
 const revealNodes = [...document.querySelectorAll(".reveal")];
 const projectCards = [...document.querySelectorAll("[data-project]")];
 const projectDialog = document.querySelector("[data-project-dialog]");
@@ -98,6 +99,38 @@ const projectDialogTags = document.querySelector("[data-project-dialog-tags]");
 const backdropCanvas = document.querySelector(".backdrop-canvas");
 const heroSection = document.querySelector(".hero");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const projectNarratives = {
+  northstar: {
+    role: {
+      ru: "Анонимный бот спроектирован как закрытый контур общения: отдельная админ-панель, наблюдаемость по сообщениям и аккуратный поток модерации без лишнего шума.",
+      en: "The anonymous bot was designed as a closed communication loop: a dedicated admin panel, message observability, and a clean moderation flow without extra noise.",
+    },
+    outcome: {
+      ru: "В итоге переписка, контроль и статистика живут в одной системе, поэтому операторы видят картину целиком и не собирают ее вручную по разным источникам.",
+      en: "As a result, messaging, control, and statistics live in one system, so operators get the full picture instead of stitching it together from separate sources.",
+    },
+  },
+  sentinel: {
+    role: {
+      ru: "Сервис публикации собран вокруг реальной редакторской работы: публикация, правки, розыгрыши, каталог и внешние интеграции сведены в единый сценарий.",
+      en: "The publishing service is built around real editorial work: publishing, edits, giveaways, the catalog, and external integrations are merged into one workflow.",
+    },
+    outcome: {
+      ru: "Это убрало разрывы между контентом и операционкой: команда быстрее публикует материалы, управляет активностями и не теряет данные между сервисами.",
+      en: "That removed the split between content and operations: the team can publish faster, manage activities, and keep data from falling between services.",
+    },
+  },
+  ghostline: {
+    role: {
+      ru: "Маркет номеров сделан как приватная витрина с упором на анонимность, понятную выдачу товара и безопасный сценарий покупки физических Telegram-номеров.",
+      en: "The number marketplace is built as a private storefront focused on anonymity, clear inventory presentation, and a safe flow for buying physical Telegram numbers.",
+    },
+    outcome: {
+      ru: "Покупатель получает понятный путь от выбора до получения номера, а команда - аккуратный операционный слой для каталога, заказов и поддержки.",
+      en: "Buyers get a clear path from selection to delivery, while the team gets a disciplined operational layer for the catalog, orders, and support.",
+    },
+  },
+};
 
 function setLanguage(lang) {
   const nextLang = lang === "en" ? "en" : "ru";
@@ -112,11 +145,47 @@ function setLanguage(lang) {
     }
   });
 
+  binaryScrambleNodes.forEach((node) => {
+    const value = node.dataset[nextLang] || node.dataset.text || node.textContent || "";
+    node.dataset.text = value;
+    node.textContent = value;
+  });
+
   langButtons.forEach((button) => {
     const isActive = button.dataset.langSwitch === nextLang;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
+}
+
+function getProjectCardDetails(projectKey) {
+  const currentLang = body.dataset.lang === "en" ? "en" : "ru";
+  const card = projectCards.find((item) => item.dataset.project === projectKey);
+  const narrative = projectNarratives[projectKey];
+
+  if (!card || !narrative) {
+    return null;
+  }
+
+  const index = card.querySelector(".project-index")?.textContent?.trim() || "";
+  const title = card.querySelector("h3")?.textContent?.trim() || "";
+  const summaryNode = card.querySelector(".project-copy");
+  const summary =
+    summaryNode?.dataset[currentLang]?.trim() ||
+    summaryNode?.textContent?.trim() ||
+    "";
+  const tags = [...card.querySelectorAll(".tag-list span")]
+    .map((item) => item.textContent?.trim() || "")
+    .filter(Boolean);
+
+  return {
+    index,
+    title,
+    summary,
+    role: narrative.role[currentLang],
+    outcome: narrative.outcome[currentLang],
+    tags,
+  };
 }
 
 function initLanguageSwitch() {
@@ -127,6 +196,62 @@ function initLanguageSwitch() {
   });
 
   setLanguage(body.dataset.lang || "ru");
+}
+
+function initMobileMenu() {
+  const toggle = document.querySelector("[data-menu-toggle]");
+  const panel = document.querySelector("[data-menu-panel]");
+  const navLinks = panel ? [...panel.querySelectorAll('a[href^="#"]')] : [];
+  const mobileQuery = window.matchMedia("(max-width: 560px)");
+
+  if (!toggle || !panel) {
+    return;
+  }
+
+  function setOpen(nextOpen) {
+    const isOpen = Boolean(nextOpen) && mobileQuery.matches;
+    panel.classList.toggle("is-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    document.body.classList.toggle("menu-open", isOpen);
+  }
+
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    setOpen(!isOpen);
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      setOpen(false);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!mobileQuery.matches) {
+      return;
+    }
+
+    const target = event.target;
+    if (!(target instanceof Node)) {
+      return;
+    }
+
+    if (!panel.contains(target) && !toggle.contains(target)) {
+      setOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setOpen(false);
+    }
+  });
+
+  mobileQuery.addEventListener("change", (event) => {
+    if (!event.matches) {
+      setOpen(false);
+    }
+  });
 }
 
 function initReveal() {
@@ -160,18 +285,17 @@ function openProjectDialog(projectKey) {
     return;
   }
 
-  const currentLang = body.dataset.lang === "en" ? "en" : "ru";
-  const details = projectDetails[projectKey];
+  const details = getProjectCardDetails(projectKey);
 
   if (!details) {
     return;
   }
 
   projectDialogIndex.textContent = details.index;
-  projectDialogTitle.textContent = details.title[currentLang];
-  projectDialogSummary.textContent = details.summary[currentLang];
-  projectDialogRole.textContent = details.role[currentLang];
-  projectDialogOutcome.textContent = details.outcome[currentLang];
+  projectDialogTitle.textContent = details.title;
+  projectDialogSummary.textContent = details.summary;
+  projectDialogRole.textContent = details.role;
+  projectDialogOutcome.textContent = details.outcome;
 
   projectDialogTags.replaceChildren(
     ...details.tags.map((tag) => {
@@ -218,6 +342,95 @@ function initProjectDialog() {
     if (!isInside) {
       closeProjectDialog();
     }
+  });
+}
+
+function initBinaryScramble() {
+  if (!binaryScrambleNodes.length) {
+    return;
+  }
+
+  if (prefersReducedMotion.matches) {
+    binaryScrambleNodes.forEach((node) => {
+      const originalText = node.dataset.text || node.textContent || "";
+      node.textContent = originalText;
+    });
+    return;
+  }
+
+  const glyphs = ["0", "1"];
+  const scrambleGroups = [...document.querySelectorAll("[data-binary-trigger]")];
+
+  scrambleGroups.forEach((group) => {
+    const nodes = [...group.querySelectorAll("[data-binary-scramble]")];
+
+    if (!nodes.length) {
+      return;
+    }
+
+    const originals = nodes.map((node) => node.dataset.text || node.textContent || "");
+    let frameId = 0;
+    let startTime = 0;
+    let isAnimating = false;
+
+    nodes.forEach((node, index) => {
+      node.textContent = originals[index];
+    });
+
+    function animate(timestamp) {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / 720, 1);
+
+      nodes.forEach((node, index) => {
+        const originalText = originals[index];
+        const revealCount = Math.floor(originalText.length * progress);
+
+        node.textContent = [...originalText]
+          .map((char, charIndex) => {
+            if (char === " ") {
+              return " ";
+            }
+
+            if (charIndex < revealCount) {
+              return char;
+            }
+
+            return glyphs[Math.floor(Math.random() * glyphs.length)];
+          })
+          .join("");
+      });
+
+      if (progress < 1) {
+        frameId = window.requestAnimationFrame(animate);
+        return;
+      }
+
+      nodes.forEach((node, index) => {
+        node.textContent = originals[index];
+      });
+      frameId = 0;
+      startTime = 0;
+      isAnimating = false;
+    }
+
+    function startAnimation() {
+      if (isAnimating) {
+        return;
+      }
+
+      nodes.forEach((node, index) => {
+        node.textContent = originals[index];
+      });
+      isAnimating = true;
+      frameId = window.requestAnimationFrame(animate);
+    }
+
+    group.addEventListener("pointerenter", startAnimation);
+    group.addEventListener("focusin", startAnimation);
   });
 }
 
@@ -420,96 +633,12 @@ function initBackdrop() {
 }
 
 function initInteractiveSurface() {
-  const cursor = document.querySelector(".cursor-glow");
-  const interactiveCards = [
-    ...document.querySelectorAll(".about-card, .contact-link"),
-  ];
-  const hoverTargets = [
-    ...document.querySelectorAll("a, button, .about-card, .contact-link"),
-  ];
-  const finePointer = window.matchMedia("(pointer: fine)");
+  const interactiveCards = [...document.querySelectorAll(".about-card, .project-card, .contact-link")];
 
   interactiveCards.forEach((card) => {
-    function updateCard(event) {
-      const rect = card.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      card.classList.add("is-illuminated");
-      card.style.setProperty("--card-x", `${x}px`);
-      card.style.setProperty("--card-y", `${y}px`);
-    }
-
-    card.addEventListener("pointermove", updateCard);
-    card.addEventListener("pointerenter", (event) => {
-      card.classList.add("is-illuminated");
-      updateCard(event);
-    });
-    card.addEventListener("pointerleave", () => {
-      card.classList.remove("is-illuminated");
-      card.style.setProperty("--card-x", "50%");
-      card.style.setProperty("--card-y", "50%");
-    });
+    card.style.setProperty("--card-x", "50%");
+    card.style.setProperty("--card-y", "50%");
   });
-
-  if (!cursor || prefersReducedMotion.matches || !finePointer.matches) {
-    return;
-  }
-
-  body.classList.add("has-custom-cursor");
-
-  const pointer = {
-    targetX: window.innerWidth * 0.5,
-    targetY: window.innerHeight * 0.5,
-    currentX: window.innerWidth * 0.5,
-    currentY: window.innerHeight * 0.5,
-  };
-
-  let cursorFrame = 0;
-
-  function renderCursor() {
-    pointer.currentX += (pointer.targetX - pointer.currentX) * 0.22;
-    pointer.currentY += (pointer.targetY - pointer.currentY) * 0.22;
-    cursor.style.setProperty("--cursor-x", `${pointer.currentX}px`);
-    cursor.style.setProperty("--cursor-y", `${pointer.currentY}px`);
-    cursorFrame = window.requestAnimationFrame(renderCursor);
-  }
-
-  function moveCursor(event) {
-    pointer.targetX = event.clientX;
-    pointer.targetY = event.clientY;
-    cursor.classList.add("is-visible");
-  }
-
-  hoverTargets.forEach((target) => {
-    target.addEventListener("pointerenter", () => {
-      cursor.classList.add("is-hovering");
-    });
-
-    target.addEventListener("pointerleave", () => {
-      cursor.classList.remove("is-hovering");
-    });
-  });
-
-  window.addEventListener("pointermove", moveCursor);
-  window.addEventListener("pointerdown", () => {
-    cursor.classList.add("is-active");
-  });
-  window.addEventListener("pointerup", () => {
-    cursor.classList.remove("is-active");
-  });
-  window.addEventListener("pointerleave", () => {
-    cursor.classList.remove("is-visible");
-    cursor.classList.remove("is-hovering");
-    cursor.classList.remove("is-active");
-  });
-  window.addEventListener("blur", () => {
-    cursor.classList.remove("is-visible", "is-hovering", "is-active");
-  });
-
-  if (!cursorFrame) {
-    renderCursor();
-  }
 }
 
 function initSmoothScroll() {
@@ -628,8 +757,10 @@ function initImageFallbacks() {
 }
 
 initLanguageSwitch();
+initMobileMenu();
 initReveal();
 initProjectDialog();
+initBinaryScramble();
 initBackdrop();
 initInteractiveSurface();
 initSmoothScroll();
